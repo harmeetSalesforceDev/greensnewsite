@@ -1,0 +1,23 @@
+<template>
+    <section class="section" aria-labelledby="gl-ts-heading">
+        <div class="container">
+            <h2 id="gl-ts-heading" class="eyebrow">{heading}</h2>
+
+            <ul class="cards">
+                <template for:each={cards} for:item="card">
+                    <li key={card.id} class="cell">
+                        <a class="card" href={card.href} data-key={card.pageKey} onclick={handleCardClick}>
+                            <span class="num" aria-hidden="true">{card.number}</span>
+                            <span class="label">{card.label}</span>
+                            <span class="title">{card.title}</span>
+                            <span class="desc">{card.description}</span>
+                            <svg class="arrow" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path d="M4 12h15m-6-6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </section>
+</template>

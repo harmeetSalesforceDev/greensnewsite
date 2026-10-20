@@ -1,0 +1,117 @@
+:host {
+    --gl-navy: #3b4a6b;
+    --gl-green: #8cc63f;
+    display: block;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f8f9fb 0%, #eceef2 100%);
+    border-top: 1px solid #e3e6ea;
+}
+
+/* Decorative circles on the left */
+.hero::before,
+.hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.hero::before {
+    width: 62rem;
+    height: 62rem;
+    top: -14rem;
+    left: -44rem;
+    background: rgba(214, 219, 227, 0.35);
+}
+.hero::after {
+    width: 40rem;
+    height: 40rem;
+    top: 2rem;
+    left: -32rem;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 41rem);
+    align-items: center;
+    gap: 4rem;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 5rem 0rem;
+}
+
+/* ---- Copy ---- */
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0 0 1.6rem;
+    color: var(--gl-navy);
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+.eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gl-green);
+}
+
+.title {
+    margin: 0;
+    color: var(--gl-navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.75rem, 5.2vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+.main,
+.accent {
+    display: block;
+}
+.accent {
+    color: var(--gl-green);
+    font-style: italic;
+}
+
+.desc {
+    max-width: 36rem;
+    margin: 2.25rem 0 0;
+    color: #5b6675;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    line-height: 1.75;
+}
+
+/* ---- Tablet / mobile ---- */
+@media (max-width: 1280px) {
+    .inner {
+        padding: 4rem 0rem;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .inner {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .desc {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .inner {
+        padding: 2.5rem 0rem;
+    }
+}

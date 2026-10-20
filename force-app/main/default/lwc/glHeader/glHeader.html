@@ -1,0 +1,56 @@
+<template>
+    <header class="gl-header">
+        <div class="bar">
+            <!-- Logo -->
+            <a class="logo" href={homeHref} onclick={handleHomeClick} aria-label="Greens List Barristers home">
+                <img src={logoUrl} alt="Greens List Barristers" />
+            </a>
+
+            <!-- Mobile menu toggle -->
+            <button type="button" class="icon-btn menu-toggle" onclick={toggleMenu}
+                aria-expanded={menuOpen} aria-controls="gl-nav" aria-label={menuButtonLabel}>
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <!-- Navigation -->
+            <nav id="gl-nav" class={menuClass} aria-label="Main">
+                <ul>
+                    <template for:each={navItems} for:item="item">
+                        <li key={item.key}>
+                            <a class={item.cssClass} href={item.href} data-api={item.apiName}
+                                aria-current={item.ariaCurrent} onclick={handleNavClick}>{item.label}</a>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button type="button" class="icon-btn" onclick={handleSearch} aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2.4" />
+                        <path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                    </svg>
+                </button>
+
+                <template if:true={isGuestUser}>
+                    <button type="button" class="pill" onclick={handleLogin}>
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" fill="currentColor" />
+                            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z" fill="currentColor" />
+                        </svg>
+                        <span>login</span>
+                    </button>
+                    <button type="button" class="pill" onclick={handleSignup}>
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                            <path d="M14 4h6v16h-6M3 12h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Signup</span>
+                    </button>
+                </template>
+            </div>
+        </div>
+    </header>
+</template>

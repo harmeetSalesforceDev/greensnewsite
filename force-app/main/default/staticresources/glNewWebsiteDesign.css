@@ -1,0 +1,41 @@
+.cCenterPanel { max-width: 100% !important; margin: 0px; padding: 0px;}
+.cCenterPanel  .comm-layout-column { padding: 0px !important;}
+.comm-layout-column .ui-widget { margin: 0px !important;}
+
+.comm-content-header { position: sticky; top: 0px; z-index: 9;}
+.container{ max-width:1440px; width:100%; margin:0px auto; padding:0px 15px;}
+
+
+@media screen and (max-width: 1366px)
+{
+	.container{ max-width:1280px;}
+}
+
+@media screen and (max-width: 1280px)
+{
+	.container{ max-width:1170px;}
+}
+
+@media screen and (max-width: 1199px)
+{
+	.container{ max-width:970px;}
+}
+
+@media screen and (max-width: 991px)
+{
+	.container{ max-width:750px;}
+}
+
+@media screen and (max-width: 767px)
+{
+	.container{ max-width:100%;}
+}
+
+
+
+
+
+
+
+
+

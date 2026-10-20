@@ -1,0 +1,138 @@
+:host {
+    --gl-bg: #3e506f;
+    --gl-bg-hover: #4a5e80;
+    --gl-green: #8cc63f;
+    --gl-line: rgba(255, 255, 255, 0.28);
+    --gl-text: #f4f1ea;
+    display: block;
+}
+
+.section {
+    background: var(--gl-bg);
+    padding: 4rem 0rem;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+.wrap {
+    max-width: 96.25rem; /* ~1540px */
+    margin: 0 auto;
+}
+
+.eyebrow {
+    margin: 0 0 2rem;
+    color: #c9d0dc;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* ---- Grid ---- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--gl-line);
+    border-bottom: 1px solid var(--gl-line);
+}
+.cell {
+    display: flex;
+}
+.cell + .cell {
+    border-left: 1px solid var(--gl-line);
+}
+
+/* ---- Card ---- */
+.card {
+    position: relative;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 3.3rem minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    align-content: start;
+    width: 100%;
+    min-height: 13.5rem;
+    padding: 3rem 2rem;
+    color: var(--gl-text);
+    text-decoration: none;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.num {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    color: var(--gl-green);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.3rem;
+}
+.label {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.title {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0.9rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+}
+.desc {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+}
+
+.arrow {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.6rem;
+    color: var(--gl-green);
+    transition: transform 0.2s ease;
+}
+
+/* ---- Hover / focus highlight ---- */
+.card:hover,
+.card:focus-visible {
+    background: var(--gl-bg-hover);
+    box-shadow: inset 0 3px 0 var(--gl-green);
+}
+.card:hover .title,
+.card:focus-visible .title {
+    color: #fff;
+}
+.card:hover .arrow,
+.card:focus-visible .arrow {
+    transform: translateX(6px);
+}
+.card:focus-visible {
+    outline: 2px solid var(--gl-green);
+    outline-offset: -2px;
+}
+
+/* ---- Tablet / mobile ---- */
+@media (max-width: 1100px) {
+    .card { padding-right: 3.5rem; }
+    .title { font-size: 1.6rem; }
+}
+
+@media (max-width: 991px) {
+    .section { padding: 2.5rem 0rem; }
+    .cards { grid-template-columns: minmax(0, 1fr); }
+    .cell + .cell {
+        border-left: 0;
+        border-top: 1px solid var(--gl-line);
+    }
+    .card { min-height: 0; padding: 2rem 1rem;}
+}

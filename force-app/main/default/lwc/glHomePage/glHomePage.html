@@ -1,0 +1,20 @@
+<template>
+    <section class="hero">
+        <div class="container">
+            <div class="inner">
+                <div class="copy">
+                    <p class="eyebrow">{eyebrow}</p>
+                    <h1 class="title">
+                        <span class="main">{titleMain}</span>
+                        <em class="accent">{titleAccent}</em>
+                    </h1>
+                    <p class="desc">{description}</p>
+                </div>
+
+                <div class="panel">
+                    <c-gl-ask-greens onask={handleAsk} onsuggestionselect={handleSuggestion}></c-gl-ask-greens>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
