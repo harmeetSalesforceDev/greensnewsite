@@ -27,8 +27,7 @@ export default class GlHeader extends NavigationMixin(LightningElement) {
     // Pre-generate real hrefs so links behave like normal anchors
     async generateUrls() {
         const targets = [
-            ...getNavItems().map((i) => ({ name: i.apiName, ref: i.pageReference })),
-            { name: 'Home', ref: getPageReference('HOME') }
+            ...getNavItems().map((i) => ({ name: i.apiName, ref: i.pageReference }))
         ];
         const entries = await Promise.all(
             targets.map(async (t) => {
@@ -57,6 +56,8 @@ export default class GlHeader extends NavigationMixin(LightningElement) {
 
     // Active when the page API name matches, or (fallback) the URL path matches
     isActive(apiName, href) {
+        console.log('apiname ' + apiName    )
+        console.log('currentPageName ' + this.currentPageName)
         if (
             this.currentPageName &&
             this.currentPageName.toLowerCase() === apiName.toLowerCase()

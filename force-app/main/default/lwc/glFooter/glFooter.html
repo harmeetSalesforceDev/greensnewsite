@@ -1,0 +1,15 @@
+<template>
+    <footer class="gl-footer">
+        <div class="bar">
+            <p class="brand">{brand}</p>
+            <p class="address">{address}</p>
+            <ul class="links">
+                <template for:each={links} for:item="link">
+                    <li key={link.key}>
+                        <a href={link.href} data-key={link.key} onclick={handleLinkClick}>{link.label}</a>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </footer>
+</template>

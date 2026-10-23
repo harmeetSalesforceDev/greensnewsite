@@ -1,0 +1,89 @@
+:host {
+    --gl-navy: #3b4a6b;
+    --gl-green: #8cc63f;
+    display: block;
+}
+
+.banner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f8f9fb 0%, #eceef2 60%, #e5e7ec 100%);
+    border-top: 1px solid #e3e6ea;
+}
+
+/* Faint "GL" monogram on the right */
+.watermark {
+    position: absolute;
+    top: 50%;
+    right: 6%;
+    transform: translateY(-50%);
+    color: rgba(59, 74, 107, 0.07);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(7rem, 12vw, 12rem);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.inner {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 5rem 0rem;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0 0 1.5rem;
+    color: var(--gl-navy);
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+.eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gl-green);
+}
+
+.title {
+    margin: 0;
+    color: var(--gl-navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.75rem, 5.2vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+.main,
+.accent {
+    display: block;
+}
+.accent {
+    color: var(--gl-green);
+    font-style: italic;
+}
+
+.desc {
+    max-width: 47rem;
+    margin: 2rem 0 0;
+    color: #5b6675;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    line-height: 1.75;
+}
+
+@media (max-width: 1280px) {
+    .inner { padding: 4rem 0rem; }
+}
+
+@media (max-width: 767px) {
+    .inner { padding: 2.5rem 0rem; }
+    .desc { font-size: 1.05rem; }
+    .watermark { right: 4%; }
+}

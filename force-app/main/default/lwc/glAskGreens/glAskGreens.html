@@ -1,0 +1,66 @@
+<template>
+    <section class="card" aria-labelledby="ag-title">
+        <!-- Header -->
+        <header class="head">
+            <span class="avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <g stroke="#8cc63f" stroke-width="2.4" stroke-linecap="round">
+                        <path d="M6 9v6" />
+                        <path d="M10.5 5v14" />
+                        <path d="M15 8v8" />
+                        <path d="M19 10.5v3" />
+                    </g>
+                </svg>
+            </span>
+            <div class="head-text">
+                <p id="ag-title" class="title">Ask Greens</p>
+                <p class="status"><span class="dot" aria-hidden="true"></span>AI guide &middot; online</p>
+            </div>
+        </header>
+
+        <hr class="divider" />
+
+        <!-- Intro -->
+        <h2 class="heading">Barrister Search: How can we help?</h2>
+        <p class="intro">
+            Our intelligent guide searches barristers, expertise, seniority, accreditations,
+            contact details and selected cases across the Greens List website.
+        </p>
+
+        <!-- Suggestions -->
+        <ul class="suggestions">
+            <template for:each={suggestions} for:item="item">
+                <li key={item.id}>
+                    <button type="button" class="suggestion" data-text={item.text} onclick={handleSuggestion}>
+                        <span>{item.text}</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                            <path d="M4 12h15m-6-6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </li>
+            </template>
+        </ul>
+
+        <!-- Input -->
+        <div class="ask-box">
+            <svg class="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M15 15l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <label for="ag-input" class="sr-only">Ask about a barrister</label>
+            <input id="ag-input" class="input" type="text" placeholder="Ask about a barrister&hellip;"
+                value={question} oninput={handleInput} onkeydown={handleKeyDown} autocomplete="off" />
+            <button type="button" class="mic" aria-label="Voice input">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.7" />
+                    <path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+            </button>
+            <button type="button" class="send" aria-label="Send question" onclick={handleSubmit}>
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path d="M4 12h15m-6-6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    </section>
+</template>

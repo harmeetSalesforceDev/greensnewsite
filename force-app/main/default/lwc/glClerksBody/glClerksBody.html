@@ -1,0 +1,118 @@
+<template>
+    <div class="page">
+        <div class="container">
+            <!-- Loading / error / empty -->
+            <template lwc:if={isLoading}>
+                <p class="state" role="status" aria-live="polite">Loading team&hellip;</p>
+            </template>
+            <template lwc:elseif={hasError}>
+                <p class="state" role="alert">We couldn&rsquo;t load the team just now. Please try again shortly.</p>
+            </template>
+            <template lwc:elseif={isEmpty}>
+                <p class="state">No team members to show.</p>
+            </template>
+
+            <!-- Directors & Head Clerks -->
+            <template lwc:if={hasDirectors}>
+                <section class="block" aria-labelledby="gl-dir-heading">
+                    <header class="block-head">
+                        <div>
+                            <p class="kicker">Leadership</p>
+                            <h2 id="gl-dir-heading" class="block-title">Directors &amp; Head Clerks</h2>
+                        </div>
+                        <p class="block-intro">{directorsIntro}</p>
+                    </header>
+
+                    <ul class="grid grid-directors">
+                        <template for:each={directors} for:item="person">
+                            <li key={person.id} class="card card-director">
+                                <div class="photo">
+                                    <template lwc:if={person.photoUrl}>
+                                        <img src={person.photoUrl} alt={person.name} loading="lazy" />
+                                    </template>
+                                    <template lwc:else>
+                                        <span class="initials" aria-hidden="true">{person.initials}</span>
+                                    </template>
+                                </div>
+                                <div class="info">
+                                    <p class="role">{person.label}</p>
+                                    <h3 class="name">{person.name}</h3>
+                                    <dl class="details">
+                                        <div class="row">
+                                            <dt>Phone</dt>
+                                            <dd>
+                                                <template lwc:if={person.phoneHref}>
+                                                    <a href={person.phoneHref}>{person.phone}</a>
+                                                </template>
+                                            </dd>
+                                        </div>
+                                        <div class="row">
+                                            <dt>Email</dt>
+                                            <dd>
+                                                <template lwc:if={person.emailHref}>
+                                                    <a href={person.emailHref}>{person.email}</a>
+                                                </template>
+                                            </dd>
+                                        </div>
+                                    </dl>
+                                
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+            </template>
+
+            <!-- Clerks & support staff -->
+            <template lwc:if={hasStaff}>
+                <section class="block" aria-labelledby="gl-staff-heading">
+                    <header class="block-head">
+                        <div>
+                            <p class="kicker">The Greens List team</p>
+                            <h2 id="gl-staff-heading" class="block-title">Clerks &amp; support staff</h2>
+                        </div>
+                        <p class="block-intro">Our team supports every stage of the briefing process and the day-to-day work of the List.</p>
+                    </header>
+
+                    <ul class="grid grid-staff">
+                        <template for:each={staff} for:item="person">
+                            <li key={person.id} class="card card-staff">
+                                <div class="photo">
+                                    <template lwc:if={person.photoUrl}>
+                                        <img src={person.photoUrl} alt={person.name} loading="lazy" />
+                                    </template>
+                                    <template lwc:else>
+                                        <span class="initials" aria-hidden="true">{person.initials}</span>
+                                    </template>
+                                </div>
+                                <div class="info">
+                                    <p class="role"><lightning-formatted-rich-text value={person.label} ></lightning-formatted-rich-text> </p>
+                                    <h3 class="name">{person.name}</h3>
+                                    <dl class="details">
+                                        <div class="row">
+                                            <dt>Phone</dt>
+                                            <dd>
+                                                <template lwc:if={person.phoneHref}>
+                                                    <a href={person.phoneHref}>{person.phone}</a>
+                                                </template>
+                                            </dd>
+                                        </div>
+                                        <div class="row">
+                                            <dt>Email</dt>
+                                            <dd>
+                                                <template lwc:if={person.emailHref}>
+                                                    <a href={person.emailHref}>{person.email}</a>
+                                                </template>
+                                            </dd>
+                                        </div>
+                                    </dl>
+                                    
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+            </template>
+        </div>
+    </div>
+</template>

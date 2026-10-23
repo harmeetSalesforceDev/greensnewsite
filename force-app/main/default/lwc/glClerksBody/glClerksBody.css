@@ -1,0 +1,234 @@
+:host {
+    --gl-navy: #3b4a6b;
+    --gl-green: #8cc63f;
+    --gl-muted: #6b7684;
+    --gl-line: #cdd2da;
+    display: block;
+}
+
+.page {
+    box-sizing: border-box;
+    padding: 4rem 0rem;
+    background: #f3f4f6;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+p,
+h2,
+h3,
+dl,
+dd,
+ul {
+    margin: 0;
+}
+
+.state {
+    padding: 3rem 0;
+    color: var(--gl-muted);
+    text-align: center;
+}
+
+/* ---- Section headers ---- */
+.block + .block {
+    margin-top: 4.5rem;
+}
+.block-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+}
+.kicker {
+    margin-bottom: 0.5rem;
+    color: var(--gl-muted);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+.block-title {
+    color: var(--gl-navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
+}
+.block-intro {
+    max-width: 38rem;
+    padding-bottom: 0.35rem;
+    color: #5b6675;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ---- Grids (1px gap + grey background draws the card borders) ---- */
+.grid {
+    display: grid;
+    gap: 1px;
+    list-style: none;
+    background: var(--gl-line);
+    border: 1px solid var(--gl-line);
+}
+.grid-directors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-staff {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+    display: flex;
+    background: #fff;
+}
+
+/* ---- Photo ---- */
+.photo {
+    position: relative;
+    background: #8d909a;
+    overflow: hidden;
+}
+.photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+.initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+}
+
+/* ---- Info ---- */
+.info {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.75rem;
+}
+.role {
+    color: var(--gl-muted);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+.name {
+    margin: 0.55rem 0 1.4rem;
+    color: var(--gl-navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.85rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.details {
+    border-bottom: 1px solid var(--gl-line);
+}
+.row {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--gl-line);
+}
+.row dt {
+    color: var(--gl-muted);
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+.row dd {
+    min-width: 0;
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+}
+.row a {
+    color: var(--gl-navy);
+    text-decoration: none;
+}
+.row a:hover {
+    text-decoration: underline;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1.6rem;
+    color: var(--gl-navy);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+.contact svg {
+    transition: transform 0.2s ease;
+}
+.contact:hover svg,
+.contact:focus-visible svg {
+    transform: translateX(5px);
+}
+.contact:hover {
+    color: #263454;
+}
+.contact:focus-visible,
+.row a:focus-visible {
+    outline: 2px solid var(--gl-green);
+    outline-offset: 2px;
+}
+
+/* ---- Director card: photo left, details right ---- */
+.card-director {
+    flex-direction: row;
+    min-height: 22rem;
+}
+.card-director .photo {
+    flex: 0 0 44%;
+}
+
+/* ---- Staff card: photo on top ---- */
+.card-staff {
+    flex-direction: column;
+}
+.card-staff .photo {
+    aspect-ratio: 3 / 2;
+}
+.card-staff .info {
+    padding: 1.6rem 1.75rem 1.5rem;
+}
+.card-staff .name {
+    font-size: 1.7rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1280px) {
+    .page { padding: 3rem 0rem; }
+}
+
+@media (max-width: 1100px) {
+    .grid-directors { grid-template-columns: minmax(0, 1fr); }
+    .grid-staff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .block-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+}
+
+@media (max-width: 767px) {
+    .page { padding: 2.25rem 0rem; }
+    .grid-staff { grid-template-columns: minmax(0, 1fr); }
+    .card-director { flex-direction: column; min-height: 0; }
+    .card-director .photo { flex: none; aspect-ratio: 3 / 2; }
+    .block-title { font-size: 1.9rem; }
+}

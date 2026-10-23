@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-		<members>glHeader</members>
-		<members>glHomePage</members>
-		<members>glTraditionalSearch</members>
-		<members>glBarristerBanner</members>
-		<name>LightningComponentBundle</name>
-	</types>
+        <members>siteUtility</members>
+        <members>glHeader</members>
+        <members>glFooter</members>
+        <members>glHomePage</members>
+        <members>glAskGreens</members>
+        <members>glTraditionalSearch</members>
+        <members>glBarristerBanner</members>
+        <members>glClerksBanner</members>
+        <members>glClerksBody</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>GlClerksController</members>
+        <members>GlClerksControllerTest</members>
+        <name>ApexClass</name>
+    </types>
     <types>
 		<members>glNewWebsiteDesign</members>
 		<name>StaticResource</name>
