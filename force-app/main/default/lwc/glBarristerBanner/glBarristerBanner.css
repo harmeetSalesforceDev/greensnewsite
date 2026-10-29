@@ -31,7 +31,7 @@
     box-sizing: border-box;
     max-width: 1920px;
     margin: 0 auto;
-    padding: 6.2rem 7rem 5.5rem 8.4rem;
+    padding: 5rem 0rem;
 }
 
 .eyebrow {
@@ -72,8 +72,7 @@
 }
 
 .desc {
-    max-width: 47rem;
-    margin: 2rem 0 0;
+    margin: 1.5rem 0 0;
     color: #5b6675;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.2rem;
@@ -81,11 +80,11 @@
 }
 
 @media (max-width: 1280px) {
-    .inner { padding: 4.5rem 2.5rem 4rem; }
+    .inner { padding: 4rem 0rem; }
 }
 
-@media (max-width: 600px) {
-    .inner { padding: 3rem 1.25rem 2.5rem; }
+@media (max-width: 767px) {
+    .inner { padding: 2.5rem 0rem ; }
     .desc { font-size: 1.05rem; }
     .watermark { right: 4%; }
 }

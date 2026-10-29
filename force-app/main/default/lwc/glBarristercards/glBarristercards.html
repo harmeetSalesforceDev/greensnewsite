@@ -1,0 +1,76 @@
+<template>
+    <div class="wrap">
+        <div class="container">
+            <template lwc:if={loading}>
+                <p class="state" role="status" aria-live="polite">Loading barristers&hellip;</p>
+            </template>
+            <template lwc:if={showEmpty}>
+                <p class="state">No barristers found.</p>
+            </template>
+
+            <!-- Section 1: QC_Date__c != null -->
+            <template lwc:if={hasSilks}>
+                <section class="section" aria-labelledby="gl-bc-silks">
+                    <h2 id="gl-bc-silks" class="section-title">{silksTitle}</h2>
+                    <ul class="grid">
+                        <template for:each={silks} for:item="card">
+                            <li key={card.id} class="card">
+                                <div class="photo">
+                                    <template lwc:if={card.photoUrl}>
+                                        <img src={card.photoUrl} alt={card.name} loading="lazy" />
+                                    </template>
+                                    <template lwc:else>
+                                        <span class="initials" aria-hidden="true">{card.initials}</span>
+                                    </template>
+                                </div>
+                                <div class="info">
+                                    <p class="eyebrow">{card.eyebrow}</p>
+                                    <h3 class="name">{card.name}</h3>
+                                    <button type="button" class="view" data-id={card.id} data-name={card.name}
+                                        aria-label={card.profileLabel} onclick={handleViewProfile}>
+                                        <span>View profile</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                            <path d="M4 12h15m-6-6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+            </template>
+
+            <!-- Section 2: QC_Date__c = null -->
+            <template lwc:if={hasSeniorJunior}>
+                <section class="section" aria-labelledby="gl-bc-senior">
+                    <h2 id="gl-bc-senior" class="section-title">{seniorJuniorTitle}</h2>
+                    <ul class="grid">
+                        <template for:each={seniorJunior} for:item="card">
+                            <li key={card.id} class="card">
+                                <div class="photo">
+                                    <template lwc:if={card.photoUrl}>
+                                        <img src={card.photoUrl} alt={card.name} loading="lazy" />
+                                    </template>
+                                    <template lwc:else>
+                                        <span class="initials" aria-hidden="true">{card.initials}</span>
+                                    </template>
+                                </div>
+                                <div class="info">
+                                    <p class="eyebrow">{card.eyebrow}</p>
+                                    <h3 class="name">{card.name}</h3>
+                                    <button type="button" class="view" data-id={card.id} data-name={card.name}
+                                        aria-label={card.profileLabel} onclick={handleViewProfile}>
+                                        <span>View profile</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                                            <path d="M4 12h15m-6-6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+            </template>
+        </div>
+    </div>
+</template>

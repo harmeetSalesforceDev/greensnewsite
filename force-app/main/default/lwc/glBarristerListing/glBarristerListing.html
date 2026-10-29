@@ -1,0 +1,186 @@
+<template>
+    <div class="page">
+        <div class="container">
+            <section class="card" aria-labelledby="gl-bl-title">
+                <h2 id="gl-bl-title" class="title">Find a Barrister</h2>
+
+                <div class="grid">
+                    <!-- Barrister name -->
+                    <div class="field" data-field="barrister" onfocusout={handleBarristerFocusOut}>
+                        <label class="label" for="gl-bl-barrister">Barrister Name</label>
+                        <div class="box" onclick={handleBarristerBoxClick}>
+                            <template for:each={barristerChips} for:item="chip">
+                                <span key={chip.id} class="chip">
+                                    <span class="chip-text">{chip.name}</span>
+                                    <button type="button" class="chip-x" data-id={chip.id} aria-label={chip.removeLabel} onclick={handleRemoveBarrister}>&times;</button>
+                                </span>
+                            </template>
+                            <template lwc:if={barristerMore}>
+                                <span class="chip chip-more">{barristerMore}</span>
+                            </template>
+                            <input id="gl-bl-barrister" class="text" type="text" data-input="barrister" autocomplete="off"
+                                aria-haspopup="true" aria-expanded={barristerExpanded}
+                                value={barristerTerm} onfocus={handleBarristerFocus} oninput={handleBarristerInput}
+                                onkeydown={handleBarristerKeyDown} />
+                        </div>
+
+                        <template lwc:if={barristerOpen}>
+                            <div class="panel" tabindex="-1" role="group" aria-label="Barristers" onmousedown={handlePanelMouseDown}>
+                                <template lwc:if={barristerLoading}>
+                                    <p class="note" role="status">Loading&hellip;</p>
+                                </template>
+                                <template lwc:if={barristerError}>
+                                    <p class="note" role="alert">Unable to load barristers.</p>
+                                </template>
+                                <template lwc:if={barristerEmpty}>
+                                    <p class="note">No barristers found.</p>
+                                </template>
+                                <template for:each={barristerOptions} for:item="opt">
+                                    <label key={opt.id} class="check option">
+                                        <input class="cb" type="checkbox" data-id={opt.id} data-name={opt.name}
+                                            checked={opt.checked} onchange={handleBarristerToggle} />
+                                        <span class="mark"></span>
+                                        <span class="opt-name">{opt.name}</span>
+                                    </label>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Area of practice -->
+                    <div class="field" data-field="area" onfocusout={handleAreaFocusOut}>
+                        <label class="label" for="gl-bl-area">Area of Practice</label>
+                        <div class="box" onclick={handleAreaBoxClick}>
+                            <template for:each={areaChips} for:item="chip">
+                                <span key={chip.name} class="chip">
+                                    <span class="chip-text">{chip.name}</span>
+                                    <button type="button" class="chip-x" data-name={chip.name} aria-label={chip.removeLabel} onclick={handleRemoveArea}>&times;</button>
+                                </span>
+                            </template>
+                            <input id="gl-bl-area" class="text" type="text" data-input="area" autocomplete="off"
+                                aria-haspopup="true" aria-expanded={areaExpanded}
+                                value={areaTerm} onfocus={handleAreaFocus} oninput={handleAreaInput}
+                                onkeydown={handleAreaKeyDown} />
+                        </div>
+
+                        <template lwc:if={areaOpen}>
+                            <div class="panel panel-tree" tabindex="-1" role="group" aria-label="Areas of practice" onmousedown={handlePanelMouseDown}>
+                                <template lwc:if={areaLoading}>
+                                    <p class="note" role="status">Loading&hellip;</p>
+                                </template>
+                                <template lwc:if={areaError}>
+                                    <p class="note" role="alert">Unable to load areas of practice.</p>
+                                </template>
+                                <template lwc:if={areaEmpty}>
+                                    <p class="note">No areas of practice found.</p>
+                                </template>
+
+                                <template for:each={areaRows} for:item="row">
+                                    <div key={row.rowKey} class={row.rowClass}>
+                                        <template lwc:if={row.isMain}>
+                                            <template lwc:if={row.hasChildren}>
+                                                <button type="button" class={row.caretClass} data-id={row.id}
+                                                    aria-expanded={row.ariaExpanded} aria-label={row.toggleLabel}
+                                                    onclick={handleAreaToggleExpand}>
+                                                    <svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true">
+                                                        <path d="M2 1l6 4-6 4z" fill="currentColor" />
+                                                    </svg>
+                                                </button>
+                                            </template>
+                                            <template lwc:else>
+                                                <span class="caret-gap"></span>
+                                            </template>
+                                            <label class="check">
+                                                <input class="cb" type="checkbox" data-id={row.id}
+                                                    checked={row.checked} onchange={handleAreaMainToggle} />
+                                                <span class={row.markClass}></span>
+                                                <span class={row.nameClass}>{row.name}</span>
+                                            </label>
+                                        </template>
+                                        <template lwc:else>
+                                            <label class="check">
+                                                <input class="cb" type="checkbox" data-key={row.key}
+                                                    checked={row.checked} onchange={handleAreaSubToggle} />
+                                                <span class={row.markClass}></span>
+                                                <span class={row.nameClass}>{row.name}</span>
+                                            </label>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Seniority -->
+                    <div class="field">
+                        <label class="label" for="gl-bl-seniority">Seniority</label>
+                        <div class="select-wrap">
+                            <select id="gl-bl-seniority" class="select" data-field="seniority" onchange={handleSelectChange}>
+                                <template for:each={seniorityOptions} for:item="opt">
+                                    <option key={opt.key} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                </template>
+                            </select>
+                            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </div>
+                    </div>
+
+                    <!-- Barrister type -->
+                    <div class="field">
+                        <label class="label" for="gl-bl-type">Barrister Type</label>
+                        <div class="select-wrap">
+                            <select id="gl-bl-type" class="select" data-field="barristerType" onchange={handleSelectChange}>
+                                <template for:each={barristerTypeOptions} for:item="opt">
+                                    <option key={opt.key} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                </template>
+                            </select>
+                            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="field">
+                        <label class="label" for="gl-bl-gender">Gender</label>
+                        <div class="select-wrap">
+                            <select id="gl-bl-gender" class="select" data-field="gender" onchange={handleSelectChange}>
+                                <template for:each={genderOptions} for:item="opt">
+                                    <option key={opt.key} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                </template>
+                            </select>
+                            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </div>
+                    </div>
+
+                    <!-- A-Z -->
+                    <div class="field">
+                        <label class="label" for="gl-bl-az">A-Z</label>
+                        <div class="select-wrap">
+                            <select id="gl-bl-az" class="select" data-field="az" onchange={handleSelectChange}>
+                                <template for:each={azOptions} for:item="opt">
+                                    <option key={opt.key} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                </template>
+                            </select>
+                            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </div>
+                    </div>
+
+                    <!-- Keyword -->
+                    <div class="field">
+                        <label class="label" for="gl-bl-keyword">Keyword</label>
+                        <input id="gl-bl-keyword" class="input" type="text" value={keyword}
+                            oninput={handleKeywordInput} onkeydown={handleKeywordKeyDown} />
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="actions">
+                        <button type="button" class="btn btn-outline" onclick={handleClear}>Clear Filter</button>
+                        <button type="button" class="btn btn-solid" onclick={handleSearch}>Search</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="results">
+            <c-gl-barristercards barristers={barristerListing} loading={listingLoading}
+                onviewprofile={handleViewProfile}></c-gl-barristercards>
+        </div>
+    </div>
+</template>
